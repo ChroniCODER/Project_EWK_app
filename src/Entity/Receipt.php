@@ -14,8 +14,8 @@ class Receipt
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::BLOB)]
-    private $image = null;
+    #[ORM\Column(length: 255, nullable: false)]
+    private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'receipts')]
     private product $product;
