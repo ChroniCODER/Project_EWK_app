@@ -27,7 +27,7 @@
 		<h2>{{ product.name }}</h2>
 
 		{% if product.image %}
-			<img src="{{ ('uploads/images/' ~ product.image) }}" alt="{{ product.name }}">
+			<img src="{{ product.image|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}">
 		{% else %}
 			<p>No image available</p>
 		{% endif %}

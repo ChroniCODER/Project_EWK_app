@@ -15,9 +15,9 @@ class ProductFixtures extends Fixture
 
         $product1 = new Product();
         
-        $product1->setName('NessPresso DEMO');
+        $product1->setName('NesPresso DEMO');
         $product1->setPurchaseDate($purchaseDate);
-        //$product1->setImage(file_get_contents('\public\images\nesspresso.jpg'));
+        $product1->setImage('/images/nespresso.jpg');
 
         $manager->persist($product1);
 

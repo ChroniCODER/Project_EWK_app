@@ -17,6 +17,9 @@ framework:
     #fragments: true
     php_errors:
         log: true
+    
+    assets:
+        base_path: '%kernel.project_dir%/public'
 
 when@test:
     framework:
