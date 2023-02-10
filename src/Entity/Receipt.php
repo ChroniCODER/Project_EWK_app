@@ -18,8 +18,10 @@ class Receipt
     private ?string $image = null;
 
     #[ORM\ManyToOne(inversedBy: 'receipts')]
-    private product $product;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Product $product = null;
 
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -37,15 +39,20 @@ class Receipt
         return $this;
     }
 
-    public function getProduct(): ?product
+    public function getProduct(): ?Product
     {
         return $this->product;
     }
 
-    public function setProduct(?product $product): self
+    public function setProduct(?Product $product): self
     {
         $this->product = $product;
 
         return $this;
     }
+
+    public function __toString()
+    {
+        return (string) $this->id;    }
+
 }

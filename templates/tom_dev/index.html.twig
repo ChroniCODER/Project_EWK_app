@@ -24,7 +24,6 @@
 	</h2>
 
 	{% for product in products %}
-		<h2>{{ product.name }}</h2>
 
 		{% if product.image %}
 			<img src="{{ product.image|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}">
@@ -32,7 +31,17 @@
 			<p>No image available</p>
 		{% endif %}
 
+		<h2>{{ product.name }}</h2>
+
 		<p>{{ product.purchaseDate|date('Y-m-d') }}</p>
+
+		{% for receipt in product.receipts %}
+			<a href="{{ asset(receipt.getImage()) }}">Voir le ticket de caisse</a>
+		{% endfor %}
+
+		<br>
+
+		{# <a href="{{ asset(product.receipts[0].getImage()) }}">Voir le ticket de caisse</a> #}
 	{% endfor %}
 
 

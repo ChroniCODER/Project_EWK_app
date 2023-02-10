@@ -28,13 +28,8 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Receipt::class)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Receipt::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $receipts;
-
-    public function __construct()
-    {
-        $this->receipts = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {

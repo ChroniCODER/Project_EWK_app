@@ -2,16 +2,34 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Receipt;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class ReceiptFixtures extends Fixture
+class ReceiptFixtures extends Fixture implements DependentFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
-        // $product = new Product();
-        // $manager->persist($product);
+        $receipt1 = new Receipt();
+        $receipt1->setImage('/images/ticket-de-caisse.jpg');
+        $receipt1->setProduct($this->getReference(ProductFixtures::NESPRESSO_DEMO));
+        $manager->persist($receipt1);
+
+        $receipt2 = new Receipt();
+        $receipt2->setImage('/images/receipt_fake.jpg');
+        $receipt2->setProduct($this->getReference(ProductFixtures::FRIGO_DEMO));
+        $manager->persist($receipt2);
+
 
         $manager->flush();
+    }
+
+    public function getDependencies()
+    {
+
+        return [
+            ProductFixtures::class,
+        ];
     }
 }
