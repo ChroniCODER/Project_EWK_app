@@ -16,33 +16,53 @@
 			padding: 2px 6px;
 		}
 	</style>
-	<h1>
-		TEST DE MON TOM DEV Controller</h1>
 
-	<h2>
-		test affichage fixture ci dessous
+
+	<div class="container">
+	<h1 class="mt-3">
+		ENV.TEST VIA MON TOM DEV Controller
+	</h1>
+
+	<h2 class="mt-4">
+		Test affichage fixture ci-dessous :
 	</h2>
+	
+	<div class= "container d-flex flex-row-reverse justify-content-between">
+		<div class="text-white px-2 py-2 bg-secondary rounded d-inline-block text-center">
+			<h2>
+				{{ "now"|date("d/m") }}
+				<br>
+				{{ "now"|date("Y") }}
+			</h2>
+		</div>
+	</div>
+
+	<hr class="my-4">
 
 	{% for product in products %}
+		<div class="row mt-4">
+			<div class="col-md-4">
+				{% if product.image %}
+					<img src="{{ product.image|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
+				{% else %}
+					<p>No image available</p>
+				{% endif %}
+			</div>
+			<div class="col-md-8">
+				<h2>{{ product.name }}</h2>
 
-		{% if product.image %}
-			<img src="{{ product.image|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}">
-		{% else %}
-			<p>No image available</p>
-		{% endif %}
+				<p>{{ product.purchaseDate|date('Y-m-d') }}</p>
 
-		<h2>{{ product.name }}</h2>
+				{% for receipt in product.receipts %}
+					<a href="{{ asset(receipt.getImage()) }}" class="btn btn-primary">Voir le ticket de caisse</a>
+				{% endfor %}
+			</div>
+		</div>
 
-		<p>{{ product.purchaseDate|date('Y-m-d') }}</p>
-
-		{% for receipt in product.receipts %}
-			<a href="{{ asset(receipt.getImage()) }}">Voir le ticket de caisse</a>
-		{% endfor %}
-
-		<br>
-
-		{# <a href="{{ asset(product.receipts[0].getImage()) }}">Voir le ticket de caisse</a> #}
+		<hr class="my-4">
 	{% endfor %}
+</div>
+
 
 
 	<div class="example-wrapper">

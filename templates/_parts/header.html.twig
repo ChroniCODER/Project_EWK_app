@@ -1,25 +1,20 @@
 {% block header %}
-	<div class="row navbar">
-		
-
-		<div class="row d-flex justify-content-end">
-			<span class="mx-4">
-				{% if app.user %}
-
-					<p>vous etes connecté avec le compte
-						{{ app.user.username }}</p>
-					<a href="{{ path('app_logout') }}">Déconnexion</a>
-
-				{% else %}
-					<p>vous n'etes pas connecté !
-					</p>
-					<a href="{{ path('app_login') }}">Connexion</a>
-
-				{% endif %}
-			</span>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-between px-2">
+		<a class="navbar-brand" href="#">Mon Site</a>
 
 		
-	</div>
-
-
-</div>{% endblock %}
+		<div class="ml-auto">
+			{% if app.user %}
+				<span>
+					Vous êtes connecté avec le compte {{ app.user.username }}
+				</span>
+				<a href="{{ path('app_logout') }}" class="btn btn-outline-secondary">Déconnexion</a>
+			{% else %}
+				<span>
+					Vous n'êtes pas connecté
+				</span>
+				<a href="{{ path('app_login') }}" class="btn btn-outline-primary">Connexion</a>
+			{% endif %}
+		</div>
+	</nav>
+{% endblock %}
