@@ -3,3 +3,20 @@ body {
 }
 
 @import "~bootstrap/scss/bootstrap";
+
+img {
+    border-radius: 10%;
+}
+
+.date-box {
+    height: 150px !important;
+    width: 150px !important;
+    font-size: 40px;
+    display: flex;
+    //margin: auto !important;
+    word-wrap: break-word;
+    border-radius: 10% !important;
+    justify-content: center;
+    align-items: center;
+}
+

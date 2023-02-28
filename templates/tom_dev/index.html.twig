@@ -28,22 +28,19 @@
 	</h2>
 	
 	<div class= "container d-flex flex-row-reverse justify-content-between">
-		<div class="text-white px-2 py-2 bg-secondary rounded d-inline-block text-center">
-			<h2>
-				{{ "now"|date("d/m") }}
-				<br>
-				{{ "now"|date("Y") }}
-			</h2>
-		</div>
+		<div class="date-box text-white px-4 py-4 bg-secondary rounded text-center">
+			
+    		{{ "now"|date("d/m Y") }}
+  		</div>
 	</div>
 
 	<hr class="my-4">
 
 	{% for product in products %}
 		<div class="row mt-4">
-			<div class="col-md-4">
+			<div class="col-md-4 bg-secondary">
 				{% if product.image %}
-					<img src="{{ product.image|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
+					<img class="my-2 mx-2" src="{{ product.image|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
 				{% else %}
 					<p>No image available</p>
 				{% endif %}
@@ -51,7 +48,8 @@
 			<div class="col-md-8">
 				<h2>{{ product.name }}</h2>
 
-				<p>{{ product.purchaseDate|date('Y-m-d') }}</p>
+				<p>Date d'achat: {{ product.purchaseDate|date('Y-m-d') }}</p>
+				<p>Durée de la garantie: </p>
 
 				{% for receipt in product.receipts %}
 					<a href="{{ asset(receipt.getImage()) }}" class="btn btn-primary">Voir le ticket de caisse</a>
