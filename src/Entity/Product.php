@@ -31,6 +31,12 @@ class Product
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Receipt::class, orphanRemoval: true, cascade: ['persist'])]
     private Collection $receipts;
 
+    #[ORM\Column]
+    private ?int $warrantyDuration = null;
+
+    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    private ?\DateTimeInterface $expiration_date = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -113,4 +119,31 @@ class Product
 
         return $this;
     }
+
+    public function getWarrantyDuration(): ?int
+    {
+        return $this->warrantyDuration;
+    }
+
+    public function setWarrantyDuration(int $warrantyDuration): self
+    {
+        $this->warrantyDuration = $warrantyDuration;
+
+        return $this;
+    }
+
+    public function getExpirationDate(): ?\DateTimeInterface
+    {
+        return $this->expiration_date;
+    }
+
+    public function setExpirationDate(\DateTimeInterface $expiration_date): self
+    {
+        $this->expiration_date = $expiration_date;
+
+        return $this;
+    }
+
+   
+
 }
