@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajoutez un nouveau produit{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mb-4 text-center">Ajoutez un nouveau produit</h1>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                {{ form_start(addForm) }}
+                <div class="form-group mb-4">
+                    {{ form_label(addForm.name, 'Nom du produit', {'label_attr': {'class': 'font-weight-bold'}}) }}
+                    {{ form_widget(addForm.name, {'attr': {'class': 'form-control', 'placeholder': 'Entrez le nom du produit'}}) }}
+                </div>
+                <div class="form-group mb-4">
+                    {{ form_label(addForm.image, 'Image du produit (facultatif)', {'label_attr': {'class': 'font-weight-bold'}}) }}
+                    {{ form_widget(addForm.image, {'attr': {'class': 'form-control', 'placeholder': 'Entrez l\'URL de l\'image du produit'}}) }}
+                </div>
+                <div class="form-group mb-4">
+                    {{ form_label(addForm.purchase_Date, 'Date d\'achat exacte', {'label_attr': {'class': 'font-weight-bold'}}) }}
+                    {{ form_widget(addForm.purchase_Date, {'attr': {'class': 'form-control', 'placeholder': 'JJ/MM/AAAA'}}) }}
+                </div>
+                <div class="form-group mb-4">
+                    {{ form_label(addForm.warrantyDuration, 'Durée de garantie (en années)', {'label_attr': {'class': 'font-weight-bold'}}) }}
+                    {{ form_widget(addForm.warrantyDuration, {'attr': {'class': 'form-control', 'placeholder': 'Entrez la durée de garantie en années'}}) }}
+                </div>
+                
+                <div class="form-group text-center">
+                    {{ form_widget(addForm.submit, {'attr': {'class': 'btn btn-primary'}}) }}
+                </div>
+                
+                {{ form_end(addForm) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
