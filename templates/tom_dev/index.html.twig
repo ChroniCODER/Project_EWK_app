@@ -4,18 +4,6 @@
 {% endblock %}
 
 {% block body %}
-	<style>
-		.example-wrapper {
-			margin: 1em auto;
-			max-width: 800px;
-			width: 95%;
-			font: 18px / 1.5 sans-serif;
-		}
-		.example-wrapper code {
-			background: #F5F5F5;
-			padding: 2px 6px;
-		}
-	</style>
 
 
 	<div class="container">
@@ -27,15 +15,29 @@
 			Test affichage fixture ci-dessous :
 		</h2>
 
-		<div class="d-flex flex-row-reverse justify-content-between">
-			<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-secondary rounded text-center">
+{# row Sort By: / filtrage Btn /  DATE DU JOUR #}
+		<div class="row mt-4">
+			<div class="col-md-4 d-flex flex-row-reverse justify-content-between align-items-end">
+				<h2>Sort By:</h2>
+			</div>
 
-				{{ "now"|date("d/m Y") }}
+			<div class="col-md-4 d-flex justify-content-between align-items-end">
+				<a href="#" class="btn btn-primary d-flex justify-content-between">name</a>
+				<a href="#" class="btn btn-primary d-flex justify-content-between">date</a>
+			</div>
+
+			<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
+
+				<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-secondary rounded text-center">
+					{{ "now"|date("d/m Y") }}
+				</div>
 			</div>
 		</div>
 
-		<hr class="my-4">
+		<hr
+		class="my-4">
 
+{# Debut ici de la boucle d'affichage des produits en base #}
 		{% for product in products %}
 			<div class="row mt-4">
 				<div class="col-md-4 d-flex justify-content-between">
@@ -64,7 +66,7 @@
 				{% set today = "now"|date("Y-m-d")|date_modify('midnight') %}
 				{% if expirationDate > today %}
 					{% set diff = expirationDate.diff(today) %}
-					
+
 					{% if diff.days <= 90 %}
 						<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
 							<div class="date-box text-white mx-2 my-auto px-4 py-4 bg-warning rounded text-center">
@@ -86,33 +88,11 @@
 					</div>
 				{% endif %}
 
-				{# <div class="col-md-4 d-flex flex-row-reverse justify-content-between">
-														<div class="date-box text-white px-4 py-4 bg-secondary rounded text-center">
-															{{ product.expirationDate|date("d/m Y") }}
-														</div>
-													</div> #}
+
 			</div>
 
 			<hr class="my-4">
 		{% endfor %}
 
 
-		<div class="example-wrapper">
-			<h1>Hello
-				{{ controller_name }}! ✅</h1>
-
-			This friendly message is coming from:
-			<ul>
-				<li>Your controller at
-					<code>
-						<a href="{{ 'C:/Users/Thomas/Desktop/WEBDEV/DonkeySchool/Decouverte_Symfony/WarrantEasy/src/Controller/TomDevController.php'|file_link(0) }}">src/Controller/TomDevController.php</a>
-					</code>
-				</li>
-				<li>Your template at
-					<code>
-						<a href="{{ 'C:/Users/Thomas/Desktop/WEBDEV/DonkeySchool/Decouverte_Symfony/WarrantEasy/templates/tom_dev/index.html.twig'|file_link(0) }}">templates/tom_dev/index.html.twig</a>
-					</code>
-				</li>
-			</ul>
-		</div>
 	{% endblock %}
