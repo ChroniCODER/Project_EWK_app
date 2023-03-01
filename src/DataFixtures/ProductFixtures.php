@@ -48,8 +48,8 @@ class ProductFixtures extends Fixture
         $this->addReference(self::FRIGO_DEMO, $product2);
         $manager->persist($product2);
 
-        $purchaseDate3 = \DateTime::createFromFormat('Y-m-d H:i:s', '2019-04-15 12:00:00');
-        $purchaseDateAdded3 = \DateTime::createFromFormat('Y-m-d H:i:s', '2019-04-15 12:00:00');
+        $purchaseDate3 = \DateTime::createFromFormat('Y-m-d H:i:s', '2018-04-15 12:00:00');
+        $purchaseDateAdded3 = \DateTime::createFromFormat('Y-m-d H:i:s', '2018-04-15 12:00:00');
         $warrantyDuration = 5;
         $dateInterval = new DateInterval('P' . $warrantyDuration . 'Y');
         $expirationDate3 = $purchaseDateAdded3->add($dateInterval);

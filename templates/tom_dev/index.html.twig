@@ -28,7 +28,7 @@
 		</h2>
 
 		<div class="d-flex flex-row-reverse justify-content-between">
-			<div class="date-box text-white px-4 py-4 bg-secondary rounded text-center">
+			<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-secondary rounded text-center">
 
 				{{ "now"|date("d/m Y") }}
 			</div>
@@ -38,9 +38,9 @@
 
 		{% for product in products %}
 			<div class="row mt-4">
-				<div class="col-md-4">
+				<div class="col-md-4 d-flex justify-content-between">
 					{% if product.image %}
-						<img class="my-2 mx-2" src="{{ product.image|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
+						<img class="my-auto mx-2" src="{{ product.image|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
 					{% else %}
 						<p>No image available</p>
 					{% endif %}
@@ -62,33 +62,35 @@
 
 				{% set expirationDate = product.expirationDate %}
 				{% set today = "now"|date("Y-m-d")|date_modify('midnight') %}
-				{% set diff = expirationDate.diff(today) %}
-
-				{% if diff.days < 0 %}
-					<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
-						<div class="date-box text-white px-4 py-4 bg-danger rounded text-center">
-							{{ expirationDate|date("d/m Y") }}
+				{% if expirationDate > today %}
+					{% set diff = expirationDate.diff(today) %}
+					
+					{% if diff.days <= 90 %}
+						<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
+							<div class="date-box text-white mx-2 my-auto px-4 py-4 bg-warning rounded text-center">
+								{{ expirationDate|date("d/m Y") }}
+							</div>
 						</div>
-					</div>
-				{% elseif diff.days <= 90 %}
-					<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
-						<div class="date-box text-white px-4 py-4 bg-warning rounded text-center">
-							{{ expirationDate|date("d/m Y") }}
+					{% else %}
+						<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
+							<div class="date-box text-white mx-2 my-auto px-4 py-4 bg-success rounded text-center">
+								{{ expirationDate|date("d/m Y") }}
+							</div>
 						</div>
-					</div>
+					{% endif %}
 				{% else %}
 					<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
-						<div class="date-box text-white px-4 py-4 bg-success rounded text-center">
+						<div class="date-box text-white mx-2 my-auto px-4 py-4 bg-danger rounded text-center">
 							{{ expirationDate|date("d/m Y") }}
 						</div>
 					</div>
 				{% endif %}
 
 				{# <div class="col-md-4 d-flex flex-row-reverse justify-content-between">
-										<div class="date-box text-white px-4 py-4 bg-secondary rounded text-center">
-											{{ product.expirationDate|date("d/m Y") }}
-										</div>
-									</div> #}
+														<div class="date-box text-white px-4 py-4 bg-secondary rounded text-center">
+															{{ product.expirationDate|date("d/m Y") }}
+														</div>
+													</div> #}
 			</div>
 
 			<hr class="my-4">
