@@ -11,6 +11,8 @@ class ProductFixtures extends Fixture
 {
     public const NESPRESSO_DEMO = 'NESPRESSO_DEMO';
     public const FRIGO_DEMO = 'FRIGO_DEMO';
+    public const STORE_DEMO = 'STORE_DEMO';
+
 
 
     public function load(ObjectManager $manager): void
@@ -45,6 +47,21 @@ class ProductFixtures extends Fixture
         $product2->setImage('/images/frigo_demo.jpg');
         $this->addReference(self::FRIGO_DEMO, $product2);
         $manager->persist($product2);
+
+        $purchaseDate3 = \DateTime::createFromFormat('Y-m-d H:i:s', '2019-04-15 12:00:00');
+        $purchaseDateAdded3 = \DateTime::createFromFormat('Y-m-d H:i:s', '2019-04-15 12:00:00');
+        $warrantyDuration = 5;
+        $dateInterval = new DateInterval('P' . $warrantyDuration . 'Y');
+        $expirationDate3 = $purchaseDateAdded3->add($dateInterval);
+
+        $product3 = new Product();
+        $product3->setName('Store Coté Jardin DEMO');
+        $product3->setPurchaseDate($purchaseDate3);
+        $product3->setWarrantyDuration($warrantyDuration);
+        $product3->setExpirationDate($expirationDate3);
+        $product3->setImage('/images/no-image-placeholder.png');
+        $this->addReference(self::STORE_DEMO, $product3);
+        $manager->persist($product3);
 
         $manager->flush();
     }

@@ -21,6 +21,11 @@ class ReceiptFixtures extends Fixture implements DependentFixtureInterface
         $receipt2->setProduct($this->getReference(ProductFixtures::FRIGO_DEMO));
         $manager->persist($receipt2);
 
+        $receipt3 = new Receipt();
+        $receipt3->setImage('/images/facture-store-fake.png');
+        $receipt3->setProduct($this->getReference(ProductFixtures::STORE_DEMO));
+        $manager->persist($receipt3);
+        
 
         $manager->flush();
     }

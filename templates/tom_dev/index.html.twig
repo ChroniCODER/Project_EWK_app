@@ -59,11 +59,36 @@
 						<a href="{{ asset(receipt.getImage()) }}" class="btn btn-primary">Voir le ticket de caisse</a>
 					{% endfor %}
 				</div>
-				<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
-						<div class="date-box text-white px-4 py-4 bg-secondary rounded text-center">
-							{{ product.expirationDate|date("d/m Y") }}
+
+				{% set expirationDate = product.expirationDate %}
+				{% set today = "now"|date("Y-m-d")|date_modify('midnight') %}
+				{% set diff = expirationDate.diff(today) %}
+
+				{% if diff.days < 0 %}
+					<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
+						<div class="date-box text-white px-4 py-4 bg-danger rounded text-center">
+							{{ expirationDate|date("d/m Y") }}
 						</div>
 					</div>
+				{% elseif diff.days <= 90 %}
+					<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
+						<div class="date-box text-white px-4 py-4 bg-warning rounded text-center">
+							{{ expirationDate|date("d/m Y") }}
+						</div>
+					</div>
+				{% else %}
+					<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
+						<div class="date-box text-white px-4 py-4 bg-success rounded text-center">
+							{{ expirationDate|date("d/m Y") }}
+						</div>
+					</div>
+				{% endif %}
+
+				{# <div class="col-md-4 d-flex flex-row-reverse justify-content-between">
+										<div class="date-box text-white px-4 py-4 bg-secondary rounded text-center">
+											{{ product.expirationDate|date("d/m Y") }}
+										</div>
+									</div> #}
 			</div>
 
 			<hr class="my-4">
