@@ -7,7 +7,7 @@
         </div>
         <div class="form-group mb-4">
             {{ form_label(form.image, 'Image du produit (facultatif)') }}
-            {{ form_widget(form.image, {'attr': {'class': 'form-control', 'placeholder': 'Entrez l\'URL de l\'image du produit'}}) }}
+            {{ form_widget(form.image) }}
         </div>
         <div class="form-group mb-4">
             {{ form_label(form.purchase_Date, 'Date d\'achat exacte') }}
@@ -16,7 +16,7 @@
 
         <div class="form-group mb-4">
             {{ form_label(form.warrantyDuration, 'Durée de garantie (en années)') }}
-            {{ form_widget(form.warrantyDuration, {'attr': {'class': 'form-control', 'placeholder': 'Entrez la durée de garantie en années'}}) }}
+            {{ form_widget(form.warrantyDuration) }}
         </div>
         
         <div class="form-group text-center">

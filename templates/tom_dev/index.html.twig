@@ -46,7 +46,7 @@
 						<img class="my-auto mx-2" src="{{ product.image|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
 					</a>
 					{% else %}
-						<p>No image available</p>
+						<img class="my-auto mx-2" src="{{ product.image|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
 					{% endif %}
 				</div>
 				<div class="col-md-4">

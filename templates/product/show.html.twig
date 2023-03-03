@@ -18,7 +18,11 @@
             <tr>
                 <th>Image</th>
                 <td>
-                    <img src="{{ product.image|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
+                    {% if product.image %}
+                            <img src="{{ product.image|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
+                    {% else %}
+                            <img src="{{ asset('/images/no-image-placeholder.png')|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
+                    {% endif %}
                 </td>
             </tr>
             <tr>
