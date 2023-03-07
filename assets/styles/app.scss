@@ -1,11 +1,27 @@
-body {
-    background-color: lightgray;
-}
+
 
 @import "~bootstrap/scss/bootstrap";
 
+body {
+    background-color: #dff0f3 !important;
+}
+
 img {
     border-radius: 10%;
+}
+
+.brand {
+    
+    font-family: 'Comfortaa', cursive !important;
+    font-size: 600% !important;
+}
+
+.Zcolor {
+    color: blue !important;
+}
+
+.slogan {
+    font-style: italic !important;
 }
 
 .date-box {
@@ -20,18 +36,23 @@ img {
     align-items: center;
 }
 
-.btnName{
-    color: aqua !important;
-    border-radius: 10% !important;
-    background: red !important;
+.btnFilter {
+    
+    background-color: #0dcaf0 !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    padding: 0px 40px !important;
+    border-radius: 50px !important;
+    display: inline-block !important;
+    text-align: center !important;
+    font-size: 40px !important;
+    width: 150px !important;
+
 
 
 
 
 }
 
-.btn-date{
 
-
-}
 

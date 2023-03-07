@@ -12,6 +12,7 @@
         "doctrine/orm": "^2.14",
         "liip/imagine-bundle": "^2.10",
         "sensio/framework-extra-bundle": "^6.2",
+        "stof/doctrine-extensions-bundle": "^1.7",
         "symfony/asset": "6.2.*",
         "symfony/console": "6.2.*",
         "symfony/dotenv": "6.2.*",
@@ -23,7 +24,8 @@
         "symfony/security-bundle": "6.2.*",
         "symfony/validator": "6.2.*",
         "symfony/webpack-encore-bundle": "^1.16",
-        "symfony/yaml": "6.2.*"
+        "symfony/yaml": "6.2.*",
+        "vich/uploader-bundle": "^2.1"
     },
     "config": {
         "allow-plugins": {
@@ -68,7 +70,7 @@
     },
     "extra": {
         "symfony": {
-            "allow-contrib": false,
+            "allow-contrib": true,
             "require": "6.2.*"
         }
     },

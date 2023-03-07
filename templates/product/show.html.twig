@@ -27,16 +27,30 @@
             </tr>
             <tr>
                 <th>Purchase_Date</th>
-                <td>{{ product.purchaseDate ? product.purchaseDate|date('Y-m-d') : '' }}</td>
+                <td>{{ product.purchaseDate ? product.purchaseDate|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
                 <th>WarrantyDuration</th>
-                <td>{{ product.warrantyDuration }}</td>
+                <td>{{ product.warrantyDuration }} {{ product.warrantyDuration == 1 ? 'An' : 'Ans' }}</td>
             </tr>
             <tr>
                 <th>Expiration_date</th>
-                <td>{{ product.expirationDate ? product.expirationDate|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ product.expirationDate ? product.expirationDate|date('d-m-Y') : '' }}</td>
             </tr>
+            <tr>
+                <th>Ticket de Caisse</th>
+                <td>
+                    {% if product.getReceipts %}
+                            {% for receipt in product.receipts %}
+						<a href="{{ asset(receipt.getImage()) }}" class="btn btn-primary">Voir le ticket de caisse</a>
+					{% endfor %}
+                    {% else %}
+                            <p>pas de ticket, c'est impossible !!</p>
+                    {% endif %}
+                </td>
+            </tr>
+
+            
         </tbody>
     </table>
 

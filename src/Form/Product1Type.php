@@ -10,6 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class Product1Type extends AbstractType
 {
@@ -20,7 +21,8 @@ class Product1Type extends AbstractType
                 'label' => 'Nom',
                 'attr' => ['placeholder' => 'Donnez un nom à votre produit']
             ])
-            ->add('image')
+            ->add('imageFile', VichImageType::class)
+
             ->add('purchase_Date', DateType::class, [
                 'years' => range(2000, date('Y')),
                 'format' => 'dd MMMM yyyy',
