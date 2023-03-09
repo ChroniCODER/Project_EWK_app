@@ -29,7 +29,7 @@ class ProductFixtures extends Fixture
         $product1->setPurchaseDate($purchaseDate1);
         $product1->setWarrantyDuration($warrantyDuration);
         $product1->setExpirationDate($expirationDate1);
-        $product1->setImage('/images/nespresso.jpg');
+        $product1->setImage('nespresso.jpg');
         $this->addReference(self::NESPRESSO_DEMO, $product1);
         $manager->persist($product1);
 
@@ -44,7 +44,7 @@ class ProductFixtures extends Fixture
         $product2->setPurchaseDate($purchaseDate2);
         $product2->setWarrantyDuration($warrantyDuration);
         $product2->setExpirationDate($expirationDate2);
-        $product2->setImage('/images/frigo_demo.jpg');
+        $product2->setImage('frigo_demo.jpg');
         $this->addReference(self::FRIGO_DEMO, $product2);
         $manager->persist($product2);
 
@@ -59,7 +59,7 @@ class ProductFixtures extends Fixture
         $product3->setPurchaseDate($purchaseDate3);
         $product3->setWarrantyDuration($warrantyDuration);
         $product3->setExpirationDate($expirationDate3);
-        $product3->setImage('/images/no-image-placeholder.png');
+        $product3->setImage('no-image-placeholder.png');
         $this->addReference(self::STORE_DEMO, $product3);
         $manager->persist($product3);
 

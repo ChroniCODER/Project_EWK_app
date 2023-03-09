@@ -47,7 +47,7 @@
 				<div class="col-md-4 d-flex justify-content-between">
 					{% if product.image %}
 					<a class="my-auto mx-2" href="{{ path('app_product_show', {'id': product.id}) }}">
-						<img src="{{ asset('/images/products/' ~ product.image|imagine_filter('list_thumbnail')) }}" alt="image de {{ product.name }}" class="img-fluid">
+						<img src="{{ vich_uploader_asset(product, 'imageFile')|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
 					</a>
 					{% else %}
 					<a class="my-auto mx-2" href="{{ path('app_product_show', {'id': product.id}) }}">

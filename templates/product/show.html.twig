@@ -19,9 +19,9 @@
                 <th>Image</th>
                 <td>
                     {% if product.image %}
-                            <img src="{{ product.image|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
+						<img src="{{ vich_uploader_asset(product, 'imageFile')|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
                     {% else %}
-                            <img src="{{ asset('/images/no-image-placeholder.png')|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
+                        <img src="{{ asset('/images/no-image-placeholder.png')|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
                     {% endif %}
                 </td>
             </tr>
