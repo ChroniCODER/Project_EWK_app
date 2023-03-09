@@ -10,3 +10,8 @@ import './styles/app.scss';
 
 // start the Stimulus application
 import './bootstrap';
+
+//gerer les collectionType
+import a2lix_lib from '@a2lix/symfony-collection/dist/a2lix_sf_collection.min'
+
+a2lix_lib.sfCollection.init()

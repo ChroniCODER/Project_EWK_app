@@ -16,7 +16,6 @@ class ReceiptType extends AbstractType
         ->add('imageFile', VichImageType::class, [
             'label' => ' '
         ])
-        ->add('product')
         ;
     }
 

@@ -36,7 +36,7 @@ class Product
     private ?Category $category = null;
 
     #[ORM\OneToMany(mappedBy: 'product', targetEntity: Receipt::class, orphanRemoval: true, cascade: ['persist'])]
-    private Collection $receipts;
+    private ?Collection $receipts;
 
     #[ORM\Column]
     private ?int $warrantyDuration = null;
@@ -47,6 +47,11 @@ class Product
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $expiration_date = null;
+
+    public function __construct()
+    {
+        $this->receipts = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {

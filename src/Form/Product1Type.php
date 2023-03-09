@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Product;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -22,6 +23,13 @@ class Product1Type extends AbstractType
                 'attr' => ['placeholder' => 'Donnez un nom à votre produit']
             ])
             ->add('imageFile', VichImageType::class)
+
+            ->add('receipts', CollectionType::class, [
+                'entry_type' => ReceiptType::class,
+                'allow_delete' => true,
+                'allow_add' => true,
+                'by_reference' => false,
+            ])
 
             ->add('purchase_Date', DateType::class, [
                 'years' => range(2000, date('Y')),
