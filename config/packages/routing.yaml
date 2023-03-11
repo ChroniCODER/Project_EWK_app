@@ -10,3 +10,10 @@ when@prod:
     framework:
         router:
             strict_requirements: null
+
+#app_product_index_orderby_name:
+    #path: /product?orderBy=name
+    # controller: App\Controller\ProductController::index
+    #methods: GET
+
+    

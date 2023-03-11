@@ -15,12 +15,27 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProductController extends AbstractController
 {
     #[Route('/', name: 'app_product_index', methods: ['GET'])]
-    public function index(ProductRepository $productRepository): Response
+
+    public function index(Request $request, ProductRepository $productRepository)
+    {
+        $orderBy = $request->get('orderBy', 'date');
+        if ($orderBy === 'name') {
+            $products = $productRepository->findAllSortedByName();
+        } else {
+            $products = $productRepository->findAllSortedByDate();
+        }
+
+        return $this->render('product/index.html.twig', [
+            'products' => $products,
+        ]);
+    }
+
+    /* public function index(ProductRepository $productRepository): Response
     {
         return $this->render('product/index.html.twig', [
             'products' => $productRepository->findAll(),
         ]);
-    }
+    } */
 
     #[Route('/new', name: 'app_product_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ProductRepository $productRepository): Response
@@ -84,5 +99,25 @@ class ProductController extends AbstractController
         }
 
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+    }
+
+    #[Route('/name', name: 'app_product_index_name', methods: ['GET'])]
+    public function indexByName(ProductRepository $productRepository): Response
+    {
+        $products = $productRepository->findAllSortedByName();
+
+        return $this->render('product/index.html.twig', [
+            'products' => $products,
+        ]);
+    }
+
+    #[Route('/date', name: 'app_product_index_date', methods: ['GET'])]
+    public function indexByDate(ProductRepository $productRepository): Response
+    {
+        $products = $productRepository->findAllSortedByDate();
+
+        return $this->render('product/index.html.twig', [
+            'products' => $products,
+        ]);
     }
 }

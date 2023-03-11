@@ -27,7 +27,7 @@
 			</div>
 
 			<div class="col-md-4 d-flex justify-content-around align-items-end">
-				<a class="d-flex justify-content-between text-decoration-none text-white" href="#">
+				<a class="d-flex justify-content-between text-decoration-none text-white" href="{{ path('app_product_index', {'orderBy': 'name'}) }}">
 					<div class="btnFilter text-white rounded text-center">
 						<p class="mb-0">
 							NAME
@@ -35,7 +35,7 @@
 					</div>
 				</a>
 				
-				<a class="d-flex justify-content-between text-decoration-none text-white" href="#">
+				<a class="d-flex justify-content-between text-decoration-none text-white" href="{{ path('app_product_index', {'orderBy': 'date'}) }}">
 					<div class="btnFilter text-white rounded text-center">
 						<p class="mb-0">
 							DATE
