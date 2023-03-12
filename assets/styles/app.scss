@@ -36,9 +36,9 @@ img {
     align-items: center;
 }
 
-.btnFilter {
+.btnCat {
     
-    background-color: #0dcaf0 !important;
+    //background-color: #0dcaf0 !important;
     color: #FFFFFF !important;
     text-decoration: none !important;
     padding: 0px 40px !important;
@@ -48,11 +48,28 @@ img {
     font-size: 40px !important;
     width: 200px !important;
 
+}
 
+.active {
+    background-color: #0dcaf0 !important;
+}
 
-
+.btnFilter {
+    
+    //background-color: #0dcaf0 !important;
+    color: #FFFFFF !important;
+    text-decoration: none !important;
+    padding: 0px 40px !important;
+    border-radius: 50px !important;
+    display: inline-block !important;
+    text-align: center !important;
+    font-size: 40px !important;
+    width: 200px !important;
 
 }
+
+
+
 
 
 

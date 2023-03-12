@@ -13,6 +13,64 @@
 			"Do you have the receipt?"
 		</h2>
 
+
+{# row des categories #}
+
+	<div class="row mt-4">
+
+		<div class="col-md-12 d-flex justify-content-around align-items-end">
+			<a class="d-flex justify-content-between text-decoration-none text-white" href="#">
+				<div class="btnCat bg-secondary text-white rounded text-center">
+					<p class="mb-0">
+						Home
+					</p>
+				</div> 
+			</a>
+				
+			<a class="d-flex justify-content-between text-decoration-none text-white" href="#">
+				<div class="btnCat bg-secondary text-white rounded text-center">
+					<p class="mb-0">
+						Vehicle
+					</p>
+				</div>
+			</a>
+			
+			
+			<a class="d-flex justify-content-between text-decoration-none text-white" href="#">
+				<div class="btnCat bg-secondary text-white rounded text-center">
+					<p class="mb-0">
+						Hi-Fi
+					</p>
+				</div>
+			</a>
+				
+			<a class="d-flex justify-content-between text-decoration-none text-white" href="#">
+				<div class="btnCat bg-secondary text-white rounded text-center">
+					<p class="mb-0">
+						Jewelry
+					</p>
+				</div>
+			</a>
+			
+			
+			<a class="d-flex justify-content-between text-decoration-none text-white" href="#">
+				<div class="btnCat bg-secondary text-white rounded text-center">
+					<p class="mb-0">
+						Kids
+					</p>
+				</div>
+			</a>
+				
+			<a class="d-flex justify-content-between text-decoration-none text-white" href="#">
+				<div class="btnFilter bg-secondary text-white rounded text-center">
+					<p class="mb-0">
+						Others
+					</p>
+				</div>
+			</a>
+			
+		</div>
+
 {# row Sort By: ADD / filtrage Btn /  DATE DU JOUR #}
 		<div class="row mt-4">
 
@@ -26,9 +84,11 @@
 				<h2 class="d-flex align-items-end">Sort By:</h2>
 			</div>
 
+			{% set activeRoute = app.request.requestUri == '/product/?orderBy=name' ? 'name' : 'date' %}
+			
 			<div class="col-md-4 d-flex justify-content-around align-items-end">
 				<a class="d-flex justify-content-between text-decoration-none text-white" href="{{ path('app_product_index', {'orderBy': 'name'}) }}">
-					<div class="btnFilter text-white rounded text-center">
+					<div class="btnFilter bg-secondary text-white rounded text-center {% if activeRoute == 'name' %}active{% endif %}">
 						<p class="mb-0">
 							NAME
 						</p>
@@ -36,7 +96,7 @@
 				</a>
 				
 				<a class="d-flex justify-content-between text-decoration-none text-white" href="{{ path('app_product_index', {'orderBy': 'date'}) }}">
-					<div class="btnFilter text-white rounded text-center">
+					<div class="btnFilter bg-secondary text-white rounded text-center {% if activeRoute == 'date' %}active{% endif %}">
 						<p class="mb-0">
 							DATE
 						</p>
@@ -45,7 +105,7 @@
 			</div>
 
 			<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
-				<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-secondary rounded text-center">
+				<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-info rounded text-center">
 					{{ "now"|date("d/m Y") }}
 				</div>
 			</div>
