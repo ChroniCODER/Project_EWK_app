@@ -41,13 +41,17 @@ img {
     //background-color: #0dcaf0 !important;
     color: #FFFFFF !important;
     text-decoration: none !important;
-    padding: 0px 40px !important;
+    //padding: 0px 40px !important;
     border-radius: 50px !important;
-    display: inline-block !important;
+    //display: flex !important;
     text-align: center !important;
     font-size: 40px !important;
     width: 200px !important;
-
+    display: flex !important;
+    height: 60px !important;
+    justify-content: center !important;
+    align-items: center !important;
+    
 }
 
 .active {
@@ -61,11 +65,19 @@ img {
     text-decoration: none !important;
     padding: 0px 40px !important;
     border-radius: 50px !important;
-    display: inline-block !important;
+    display: flex !important;
     text-align: center !important;
     font-size: 40px !important;
     width: 200px !important;
+    height: 60px !important;
+    justify-content: center !important;
+    align-items: center !important;
 
+}
+
+.icons {
+
+    height: 44px;
 }
 
 
