@@ -27,7 +27,13 @@ class Product1Type extends AbstractType
                 'required' => false,
             ])
 
-            ->add('receiptFile', VichImageType::class)
+            ->add('receiptFile', VichImageType::class, [
+                'required' => false,
+                'allow_delete' => true,
+                'download_uri' => false,
+                'label' => 'Receipt',
+                'data' => '',
+            ])
 
            /*  ->add('receipts', CollectionType::class, [
                 'entry_type' => ReceiptType::class,

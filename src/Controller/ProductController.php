@@ -80,6 +80,15 @@ class ProductController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
+            $product = $form->getData();
+            
+            $purchaseDate = $product->getPurchaseDate();
+            $warrantyDuration = $product->getWarrantyDuration();
+            $expirationDate = clone $purchaseDate;
+            $expirationDate = $expirationDate->add(new DateInterval('P' . $warrantyDuration . 'Y'));
+            $product->setExpirationDate($expirationDate);
+            
             $productRepository->save($product, true);
 
             return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);

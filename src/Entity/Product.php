@@ -35,11 +35,11 @@ class Product
     #[ORM\ManyToOne(inversedBy: 'products')]
     private ?Category $category = null;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Receipt::class, orphanRemoval: true, cascade: ['persist'])]
-    private ?Collection $receipts;
-
     #[ORM\Column]
     private ?int $warrantyDuration = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $receipt = null;
 
     // NOTE: This is not a mapped field of entity metadata, just a simple property.
     #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'image')]
@@ -52,14 +52,7 @@ class Product
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $expiration_date = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $receipt = null;
-
-    public function __construct()
-    {
-        $this->receipts = new ArrayCollection();
-    }
-
+        
     public function getId(): ?int
     {
         return $this->id;
@@ -113,36 +106,7 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection<int, Receipt>
-     */
-    public function getReceipts(): Collection
-    {
-        return $this->receipts;
-    }
-
-    public function addReceipt(Receipt $receipt): self
-    {
-        if (!$this->receipts->contains($receipt)) {
-            $this->receipts->add($receipt);
-            $receipt->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReceipt(Receipt $receipt): self
-    {
-        if ($this->receipts->removeElement($receipt)) {
-            // set the owning side to null (unless already changed)
-            if ($receipt->getProduct() === $this) {
-                $receipt->setProduct(null);
-            }
-        }
-
-        return $this;
-    }
-
+        
     public function getWarrantyDuration(): ?int
     {
         return $this->warrantyDuration;
@@ -192,12 +156,12 @@ class Product
         return $this->imageFile;
     }
 
-    public function getReceipt(): ?string
+    public function getReceipt()
     {
         return $this->receipt;
     }
 
-    public function setReceipt(string $receipt): self
+    public function setReceipt($receipt): self
     {
         $this->receipt = $receipt;
 
