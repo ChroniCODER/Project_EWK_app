@@ -45,8 +45,15 @@ class Product
     #[Vich\UploadableField(mapping: 'products', fileNameProperty: 'image')]
     private ?File $imageFile = null;
 
+    // NOTE: This is not a mapped field of entity metadata, just a simple property.
+    #[Vich\UploadableField(mapping: 'receipts', fileNameProperty: 'receipt')]
+    private ?File $receiptFile = null;
+
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $expiration_date = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $receipt = null;
 
     public function __construct()
     {
@@ -185,6 +192,33 @@ class Product
         return $this->imageFile;
     }
 
+    public function getReceipt(): ?string
+    {
+        return $this->receipt;
+    }
+
+    public function setReceipt(string $receipt): self
+    {
+        $this->receipt = $receipt;
+
+        return $this;
+    }
+
+    public function setReceiptFile(?File $receiptFile = null): void
+    {
+        $this->receiptFile = $receiptFile;
+
+        if (null !== $receiptFile) {
+            // It is required that at least one field changes if you are using doctrine
+            // otherwise the event listeners won't be called and the file is lost
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getReceiptFile(): ?File
+    {
+        return $this->receiptFile;
+    }
 
 
 }

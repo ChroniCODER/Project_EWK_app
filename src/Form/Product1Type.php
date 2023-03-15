@@ -22,14 +22,19 @@ class Product1Type extends AbstractType
                 'label' => 'Nom',
                 'attr' => ['placeholder' => 'Donnez un nom à votre produit']
             ])
-            ->add('imageFile', VichImageType::class)
+            
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+            ])
 
-            ->add('receipts', CollectionType::class, [
+            ->add('receiptFile', VichImageType::class)
+
+           /*  ->add('receipts', CollectionType::class, [
                 'entry_type' => ReceiptType::class,
                 'allow_delete' => true,
                 'allow_add' => true,
                 'by_reference' => false,
-            ])
+            ]) */
 
             ->add('purchase_Date', DateType::class, [
                 'years' => range(2000, date('Y')),

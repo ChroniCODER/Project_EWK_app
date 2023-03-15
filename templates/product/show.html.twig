@@ -40,11 +40,10 @@
             <tr>
                 <th>Ticket de Caisse</th>
                 <td>
-                    {% if product.getReceipts %}
-                            {% for receipt in product.receipts %}
-						<a href="{{ asset(receipt.getImage()) }}" class="btn btn-primary">Voir le ticket de caisse</a>
-					{% endfor %}
-                    {% else %}
+                    {% if product.receipt %}
+                            
+						<a href="{{ vich_uploader_asset(product, 'receiptFile') }}" class="btn btn-primary">Voir le ticket de caisse</a>
+					{% else %}
                             <p>pas de ticket, c'est impossible !!</p>
                     {% endif %}
                 </td>
