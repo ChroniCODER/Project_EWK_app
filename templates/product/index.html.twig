@@ -130,14 +130,14 @@
 					</p>
 
 					{# {% for receipt in product.receipts %}
-											<a href="{{ asset(receipt.getImage()) }}" class="btn btn-primary">Voir le ticket de caisse</a>
-										{% endfor %} #}
+																<a href="{{ asset(receipt.getImage()) }}" class="btn btn-primary">Voir le ticket de caisse</a>
+															{% endfor %} #}
 
 					{% if product.receipt is not null %}
-{# 						<a href="{{ asset(product.receipt) }}" class="btn btn-primary">Voir le ticket de caisse</a>
- #}						
+						{# 						<a href="{{ asset(product.receipt) }}" class="btn btn-primary">Voir le ticket de caisse</a>
+						 #}
 						<a href="{{ vich_uploader_asset(product, 'receiptFile') }}" class="btn btn-primary">Voir le ticket de caisse</a>
-				{% endif %}
+					{% endif %}
 				</div>
 
 				{% set expirationDate = product.expirationDate %}
