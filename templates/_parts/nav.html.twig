@@ -1,0 +1,87 @@
+{# row des categories #}
+
+<div class="row mt-4">
+
+	<div class="col-md-12 d-flex justify-content-around align-items-end">
+		<a class="d-flex justify-content-between text-decoration-none text-white" href="#" title="HOME">
+			<div class="btnCat bg-secondary text-white rounded text-center">
+				<img class="icons" src="{{ asset('/images/icons/004-home.png') }}" alt="Home icon">
+			</div>
+		</a>
+
+		<a class="d-flex justify-content-between text-decoration-none text-white" href="#" title="VEHICLE">
+			<div class="btnCat bg-secondary text-white rounded text-center">
+				<img class="icons" src="{{ asset('/images/icons/006-car.png') }}" alt="vehicle icon ">
+			</div>
+		</a>
+
+
+		<a class="d-flex justify-content-between text-decoration-none text-white" href="#" title="HI-FI">
+			<div class="btnCat bg-secondary text-white rounded text-center">
+				<img class="icons" src="{{ asset('/images/icons/003-hifi.png') }}" alt="Hi-Fi icon ">
+			</div>
+		</a>
+
+		<a class="d-flex justify-content-between text-decoration-none text-white" href="#" title="JEWELRY">
+			<div class="btnCat bg-secondary text-white rounded text-center">
+				<img class="icons" src="{{ asset('/images/icons/007-diamond.png') }}" alt="Jewelry icon ">
+			</div>
+		</a>
+
+
+		<a class="d-flex justify-content-between text-decoration-none text-white" href="#" title="KIDS">
+			<div class="btnCat bg-secondary text-white rounded text-center">
+				<img class="icons" src="{{ asset('/images/icons/001-toys.png') }}" alt="Kids icon ">
+			</div>
+		</a>
+
+		<a class="d-flex justify-content-between text-decoration-none text-white" href="#" title="OTHERS">
+			<div class="btnFilter bg-secondary text-white rounded text-center">
+				<img class="icons" src="{{ asset('/images/icons/009-more.png') }}" alt="Others icon">
+			</div>
+		</a>
+
+	</div>
+</div>
+
+{# row Sort By: ADD / filtrage Btn /  DATE DU JOUR #}
+<div class="row mt-4">
+
+	<div class="col-md-4 d-flex justify-content-between">
+		<a class="d-flex my-auto text-white text-decoration-none" href="{{ path('app_product_new') }}">
+			<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-info rounded text-center">
+				<p class="mb-0">ADD</p>
+			</div>
+		</a>
+		<h2 class="d-flex align-items-end">Sort By:</h2>
+	</div>
+
+	{% set activeRoute = app.request.requestUri == '/product/?orderBy=name' ? 'name' : 'date' %}
+
+	<div class="col-md-4 d-flex justify-content-around align-items-end">
+		<a class="d-flex justify-content-between text-decoration-none text-white" href="{{ path('app_product_index', {'orderBy': 'name'}) }}">
+			<div class="btnFilter bg-secondary text-white rounded text-center {% if activeRoute == 'name' %}active{% endif %}">
+				<p class="mb-0">
+					NAME
+				</p>
+			</div>
+		</a>
+
+		<a class="d-flex justify-content-between text-decoration-none text-white" href="{{ path('app_product_index', {'orderBy': 'date'}) }}">
+			<div class="btnFilter bg-secondary text-white rounded text-center {% if activeRoute == 'date' %}active{% endif %}">
+				<p class="mb-0">
+					DATE
+				</p>
+			</div>
+		</a>
+	</div>
+
+
+	<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
+		<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-info rounded text-center">
+			{{ "now"|date("d/m Y") }}
+		</div>
+	</div>
+
+	<hr class="my-4">
+</div>

@@ -6,6 +6,7 @@
 {% block body %}
 
 	<div class="container">
+
 		<h1 class="brand mt-3 text-center">
 			Warranty<span class="Zcolor">Z</span>
 		</h1>
@@ -15,171 +16,112 @@
 		</h2>
 
 
-		{# row des categories #}
+		{% include '_parts/nav.html.twig' %}
 
-		<div class="row mt-4">
-
-			<div class="col-md-12 d-flex justify-content-around align-items-end">
-				<a class="d-flex justify-content-between text-decoration-none text-white" href="#" title="HOME">
-					<div class="btnCat bg-secondary text-white rounded text-center">
-						<img class="icons" src="{{ asset('/images/icons/004-home.png') }}" alt="Home icon">
-					</div>
-				</a>
-
-				<a class="d-flex justify-content-between text-decoration-none text-white" href="#" title="VEHICLE">
-					<div class="btnCat bg-secondary text-white rounded text-center">
-						<img class="icons" src="{{ asset('/images/icons/006-car.png') }}" alt="vehicle icon ">
-					</div>
-				</a>
-
-
-				<a class="d-flex justify-content-between text-decoration-none text-white" href="#" title="HI-FI">
-					<div class="btnCat bg-secondary text-white rounded text-center">
-						<img class="icons" src="{{ asset('/images/icons/003-hifi.png') }}" alt="Hi-Fi icon ">
-					</div>
-				</a>
-
-				<a class="d-flex justify-content-between text-decoration-none text-white" href="#" title="JEWELRY">
-					<div class="btnCat bg-secondary text-white rounded text-center">
-						<img class="icons" src="{{ asset('/images/icons/007-diamond.png') }}" alt="Jewelry icon ">
-					</div>
-				</a>
-
-
-				<a class="d-flex justify-content-between text-decoration-none text-white" href="#" title="KIDS">
-					<div class="btnCat bg-secondary text-white rounded text-center">
-						<img class="icons" src="{{ asset('/images/icons/001-toys.png') }}" alt="Kids icon ">
-					</div>
-				</a>
-
-				<a class="d-flex justify-content-between text-decoration-none text-white" href="#" title="OTHERS">
-					<div class="btnFilter bg-secondary text-white rounded text-center">
-						<img class="icons" src="{{ asset('/images/icons/009-more.png') }}" alt="Others icon">
-					</div>
-				</a>
-
-			</div>
-		</div>
-
-		{# row Sort By: ADD / filtrage Btn /  DATE DU JOUR #}
-		<div class="row mt-4">
-
-
-			<div class="col-md-4 d-flex justify-content-between">
-				<a class="d-flex my-auto text-white text-decoration-none" href="{{ path('app_product_new') }}">
-					<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-info rounded text-center">
-						<p class="mb-0">ADD</p>
-					</div>
-				</a>
-				<h2 class="d-flex align-items-end">Sort By:</h2>
-			</div>
-
-			{% set activeRoute = app.request.requestUri == '/product/?orderBy=name' ? 'name' : 'date' %}
-
-			<div class="col-md-4 d-flex justify-content-around align-items-end">
-				<a class="d-flex justify-content-between text-decoration-none text-white" href="{{ path('app_product_index', {'orderBy': 'name'}) }}">
-					<div class="btnFilter bg-secondary text-white rounded text-center {% if activeRoute == 'name' %}active{% endif %}">
-						<p class="mb-0">
-							NAME
-						</p>
-					</div>
-				</a>
-
-				<a class="d-flex justify-content-between text-decoration-none text-white" href="{{ path('app_product_index', {'orderBy': 'date'}) }}">
-					<div class="btnFilter bg-secondary text-white rounded text-center {% if activeRoute == 'date' %}active{% endif %}">
-						<p class="mb-0">
-							DATE
-						</p>
-					</div>
-				</a>
-			</div>
-
-
-			<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
-				<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-info rounded text-center">
-					{{ "now"|date("d/m Y") }}
-				</div>
-			</div>
-
-			<hr class="my-4">
-		</div>
 		{# Debut ici de la boucle d'affichage des produits en base #}
-		{% for product in products %}
-			<div class="row">
-				<div class="col-md-4 d-flex justify-content-between">
-					{% if product.image %}
-						<a class="my-auto mx-2" href="{{ path('app_product_show', {'id': product.id}) }}">
-							<img src="{{ vich_uploader_asset(product, 'imageFile')|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
+		{% if products %}
+			{% for product in products %}
+				<div
+					class="row coucou">
+					{# block gauche image produit #}
+
+					<div class="col-md-4 d-flex justify-content-between">
+						{% if product.image %}
+							<a class="my-auto mx-2" href="{{ path('app_product_show', {'id': product.id}) }}">
+								<img src="{{ vich_uploader_asset(product, 'imageFile')|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
+							</a>
+						{% else %}
+							<a class="my-auto mx-2" href="{{ path('app_product_show', {'id': product.id}) }}">
+								<img src="{{ asset('/images/no-image-placeholder.png')|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
+							</a>
+						{% endif %}
+					</div>
+
+					{# block central nom date ticket #}
+
+					<div class="col-md-4">
+						<a href="{{ path('app_product_show', {'id': product.id}) }}" class="text-decoration-none text-dark">
+							<h2>{{ product.name }}</h2>
 						</a>
-					{% else %}
-						<a class="my-auto mx-2" href="{{ path('app_product_show', {'id': product.id}) }}">
-							<img src="{{ asset('/images/no-image-placeholder.png')|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
-						</a>
-					{% endif %}
-				</div>
-				<div class="col-md-4">
-					<a href="{{ path('app_product_show', {'id': product.id}) }}" class="text-decoration-none text-dark">
-						<h2>{{ product.name }}</h2>
-					</a>
 
-					<p>Date d'achat:
-						{{ product.purchaseDate|date('d-m-Y') }}</p>
-					<p>Durée de la garantie:
-						{{ product.warrantyDuration }}
-						{{ product.warrantyDuration == 1 ? 'An' : 'Ans' }}
+						<p>Date d'achat:
+							{{ product.purchaseDate|date('d-m-Y') }}</p>
+						<p>Durée de la garantie:
+							{{ product.warrantyDuration }}
+							{{ product.warrantyDuration == 1 ? 'An' : 'Ans' }}
+						</p>
 
-					</p>
+						{% if product.receipt is not null %}
+							<a href="{{ vich_uploader_asset(product, 'receiptFile') }}" class="btn btn-primary">Voir le ticket de caisse</a>
+						{% endif %}
+					</div>
 
-					{# {% for receipt in product.receipts %}
-																																														<a href="{{ asset(receipt.getImage()) }}" class="btn btn-primary">Voir le ticket de caisse</a>
-																																													{% endfor %} #}
+					{# block droite doc date-box couleur #}
 
-					{% if product.receipt is not null %}
-						{# 						<a href="{{ asset(product.receipt) }}" class="btn btn-primary">Voir le ticket de caisse</a>
-																																										 #}
-						<a href="{{ vich_uploader_asset(product, 'receiptFile') }}" class="btn btn-primary">Voir le ticket de caisse</a>
-					{% endif %}
-				</div>
+					<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
 
-				<div class="col-md-4 d-flex flex-row-reverse justify-content-between">
-					
-					{% set expirationDate = product.expirationDate %}
-					{% set today = "now"|date("Y-m-d")|date_modify('midnight') %}
-					{% if expirationDate > today %}
-						{% set diff = expirationDate.diff(today) %}
+						{% set expirationDate = product.expirationDate %}
+						{% set today = "now"|date("Y-m-d")|date_modify('midnight') %}
+						{% if expirationDate > today %}
+							{% set diff = expirationDate.diff(today) %}
 
-						{% if diff.days <= 90 %}
+							{% if diff.days <= 90 %}
 
-							<div class="date-box text-white mx-2 my-auto px-4 py-4 bg-warning rounded text-center">
-								{{ expirationDate|date("d/m Y") }}
-							</div>
+								<div class="date-box text-white mx-2 my-auto px-4 py-4 bg-warning rounded text-center">
+									{{ expirationDate|date("d/m Y") }}
+								</div>
 
+							{% else %}
+
+								<div class="date-box text-white mx-2 my-auto px-4 py-4 bg-success rounded text-center">
+									{{ expirationDate|date("d/m Y") }}
+								</div>
+
+							{% endif %}
 						{% else %}
 
-							<div class="date-box text-white mx-2 my-auto px-4 py-4 bg-success rounded text-center">
+							<div class="date-box text-white mx-2 my-auto px-4 py-4 bg-danger rounded text-center">
 								{{ expirationDate|date("d/m Y") }}
 							</div>
 
 						{% endif %}
-					{% else %}
 
-						<div class="date-box text-white mx-2 my-auto px-4 py-4 bg-danger rounded text-center">
-							{{ expirationDate|date("d/m Y") }}
-						</div>
+						{#if du bouton docs #}
+						{% if product.productDocs|length > 0 %}
+						<a class="text-white text-decoration-none" href="{{ path('app_product_addDoc', {'id': product.id}) }}">
+							<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-info rounded text-center">
+								<p class="mb-0">Docs</p>
+							</div>
+						</a>
+						{% else %}
+						<a class="text-white text-decoration-none" href="{{ path('app_product_addDoc', {'id': product.id}) }}">
+							<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-info rounded text-center">
+								<p class="mb-0">No Docs</p>
+							</div>
+						</a>	
+						{% endif %}
 
-					{% endif %}
-					<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-info rounded text-center">
-						<p>TEST</p>
+
 					</div>
 
 				</div>
 
 				<hr class="my-4">
-			{% else %}
-				<div>
-					<h2 colspan="7">La liste est vide</h2>
-				</div>
+
 			{% endfor %}
+		{% else %}
+			<div class="d-flex flex-column align-items-center">
+				<h2 class="text-center mb-4">La liste est vide, ajoutez votre premier produit à l'aide du bouton</h2>
+				<div>
+					<a class="text-white text-decoration-none" href="{{ path('app_product_new') }}">
+						<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-info rounded text-center">
+							<p class="mb-0">ADD</p>
+						</div>
+					</a>
+				</div>
+			</div>
 
+		{% endif %}
+	</div>
 
-		{% endblock %}
+{% endblock %}
