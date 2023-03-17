@@ -3,7 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\ProductDoc;
+use App\Form\CollecType;
 use App\Form\Product1Type;
+use App\Form\ProductDocType;
+use App\Repository\ProductDocRepository;
 use App\Repository\ProductRepository;
 use DateInterval;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -65,6 +69,28 @@ class ProductController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}/addDoc', name: 'app_product_addDoc', methods: ['GET', 'POST'])]
+    public function addDoc(Request $request, Product $product, ProductDocRepository $productDocRepository): Response
+    {
+
+        $form = $this->createForm(CollecType::class);
+        $form->handleRequest($request);
+        
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            foreach ($form->get('docs')->getData() as $doc) {
+                $doc->setProduct($product);
+                $productDocRepository->save($doc, true);
+            }
+            return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('product/addDoc.html.twig', [
+            
+            'form' => $form,
+        ]);
+    }
+
     #[Route('/{id}', name: 'app_product_show', methods: ['GET'])]
     public function show(Product $product): Response
     {
@@ -110,7 +136,7 @@ class ProductController extends AbstractController
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/name', name: 'app_product_index_name', methods: ['GET'])]
+    /* #[Route('/name', name: 'app_product_index_name', methods: ['GET'])]
     public function indexByName(ProductRepository $productRepository): Response
     {
         $products = $productRepository->findAllSortedByName();
@@ -128,5 +154,7 @@ class ProductController extends AbstractController
         return $this->render('product/index.html.twig', [
             'products' => $products,
         ]);
-    }
+    } */
+
+    
 }

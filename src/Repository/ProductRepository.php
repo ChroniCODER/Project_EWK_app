@@ -50,7 +50,7 @@ class ProductRepository extends ServiceEntityRepository
     public function findAllSortedByDate()
     {
     return $this->createQueryBuilder('p')
-        ->orderBy('p.purchase_Date', 'DESC')
+        ->orderBy('p.createdAt', 'DESC')
         ->getQuery()
         ->getResult();
     }

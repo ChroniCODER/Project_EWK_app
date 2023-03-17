@@ -26,6 +26,7 @@ class ProductFixtures extends Fixture
 
         $product1 = new Product();
         $product1->setName('NesPresso DEMO');
+        $product1->setCategory($this->getReference(CategoryFixtures::CATEGORY_HIFI));
         $product1->setPurchaseDate($purchaseDate1);
         $product1->setWarrantyDuration($warrantyDuration);
         $product1->setExpirationDate($expirationDate1);
@@ -42,6 +43,7 @@ class ProductFixtures extends Fixture
         
         $product2 = new Product();
         $product2->setName('Frigo maison DEMO');
+        $product2->setCategory($this->getReference(CategoryFixtures::CATEGORY_HOME));
         $product2->setPurchaseDate($purchaseDate2);
         $product2->setWarrantyDuration($warrantyDuration);
         $product2->setExpirationDate($expirationDate2);
@@ -59,6 +61,7 @@ class ProductFixtures extends Fixture
 
         $product3 = new Product();
         $product3->setName('Store Coté Jardin DEMO');
+        $product3->setCategory($this->getReference(CategoryFixtures::CATEGORY_HOME));
         $product3->setPurchaseDate($purchaseDate3);
         $product3->setWarrantyDuration($warrantyDuration);
         $product3->setExpirationDate($expirationDate3);

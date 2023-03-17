@@ -52,6 +52,14 @@ class Product
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $expiration_date = null;
 
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: ProductDoc::class, orphanRemoval: true)]
+    private Collection $productDocs;
+
+    public function __construct()
+    {
+        $this->productDocs = new ArrayCollection();
+    }
+
         
     public function getId(): ?int
     {
@@ -184,5 +192,38 @@ class Product
         return $this->receiptFile;
     }
 
+    /**
+     * @return Collection<int, ProductDoc>
+     */
+    public function getProductDocs(): Collection
+    {
+        return $this->productDocs;
+    }
 
+    public function addProductDoc(ProductDoc $productDoc): self
+    {
+        if (!$this->productDocs->contains($productDoc)) {
+            $this->productDocs->add($productDoc);
+            $productDoc->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProductDoc(ProductDoc $productDoc): self
+    {
+        if ($this->productDocs->removeElement($productDoc)) {
+            // set the owning side to null (unless already changed)
+            if ($productDoc->getProduct() === $this) {
+                $productDoc->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
+
+    function __toString()
+    {
+        return $this->getName();
+    }
 }

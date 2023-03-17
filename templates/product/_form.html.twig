@@ -1,38 +1,8 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
-        {{ form_start(form) }}
+        {{ form(form) }}
         
-            <div class="form-group mb-4">
-                {{ form_label(form.name) }}
-                {{ form_widget(form.name) }}
-            </div>
             
-            <div class="form-group mb-4">
-                {{ form_label(form.imageFile, 'Image du produit (facultatif)') }}
-                {{ form_widget(form.imageFile) }}
-            </div>
-
-            <div class="form-group mb-4">
-                {{ form_label(form.receiptFile) }}
-                {{ form_widget(form.receiptFile) }}
-            </div>
-            
-            <div class="form-group mb-4">
-                {{ form_label(form.purchase_Date, 'Date d\'achat exacte') }}
-                {{ form_widget(form.purchase_Date) }}
-            </div>
-
-            <div class="form-group mb-4">
-                {{ form_label(form.warrantyDuration, 'Durée de garantie (en années)') }}
-                {{ form_widget(form.warrantyDuration) }}
-            </div>
-            
-            <div class="form-group text-center">
-                {{ form_widget(form) }}
-                <button class="btn btn-primary">{{ button_label|default('Save') }}</button>
-            </div>
-        
-        {{ form_end(form) }}
     </div>
 </div>
         
