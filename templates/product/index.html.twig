@@ -22,7 +22,7 @@
 		{% if products %}
 			{% for product in products %}
 				<div
-					class="row coucou">
+					class="row">
 					{# block gauche image produit #}
 
 					<div class="col-md-4 d-flex justify-content-between">
@@ -35,11 +35,20 @@
 								<img src="{{ asset('/images/no-image-placeholder.png')|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
 							</a>
 						{% endif %}
+
+						{# <div class="my-auto">
+								<a href="{{ path('app_product_addDoc', {'id': product.id}) }}" class="btn btn-primary rounded">
+									<h4>Documents complémentaires</h4> 
+																	
+									<img class="icons" src="{{ asset('/images/icons/001-receipt.png') }}" alt="Hi-Fi icon ">
+							</a>
+						</div> #}
+						
 					</div>
 
 					{# block central nom date ticket #}
 
-					<div class="col-md-4">
+					<div class="col-md-4 product-name">
 						<a href="{{ path('app_product_show', {'id': product.id}) }}" class="text-decoration-none text-dark">
 							<h2>{{ product.name }}</h2>
 						</a>
@@ -50,10 +59,6 @@
 							{{ product.warrantyDuration }}
 							{{ product.warrantyDuration == 1 ? 'An' : 'Ans' }}
 						</p>
-
-						{% if product.receipt is not null %}
-							<a href="{{ vich_uploader_asset(product, 'receiptFile') }}" class="btn btn-primary">Voir le ticket de caisse</a>
-						{% endif %}
 					</div>
 
 					{# block droite doc date-box couleur #}
@@ -86,20 +91,28 @@
 
 						{% endif %}
 
-						{#if du bouton docs #}
-						{% if product.productDocs|length > 0 %}
-						<a class="text-white text-decoration-none" href="{{ path('app_product_addDoc', {'id': product.id}) }}">
-							<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-info rounded text-center">
-								<p class="mb-0">Docs</p>
+						{% if product.receipt is not null %}
+							<div class="my-auto">
+								<a href="{{ vich_uploader_asset(product, 'receiptFile') }}" class="btn btn-primary rounded">
+									<h4>Ticket de caisse</h4> 
+									<img class="icons" src="{{ asset('/images/icons/001-receipt.png') }}" alt="receipt icon ">
+								</a>
 							</div>
-						</a>
-						{% else %}
-						<a class="text-white text-decoration-none" href="{{ path('app_product_addDoc', {'id': product.id}) }}">
-							<div class="date-box text-white mx-2 my-2 px-4 py-4 bg-info rounded text-center">
-								<p class="mb-0">No Docs</p>
-							</div>
-						</a>	
 						{% endif %}
+						{# {#if du bouton docs
+						{% if product.productDocs|length > 0 %}
+							<a class="text-white text-decoration-none" href="{{ path('app_product_addDoc', {'id': product.id}) }}">
+								<div class="date-box text-white mx-2 my-auto px-4 py-4 bg-info rounded text-center">
+									<p class="mb-0">Docs</p>
+								</div>
+							</a>
+						{% else %}
+							<a class="text-white text-decoration-none" href="{{ path('app_product_addDoc', {'id': product.id}) }}">
+								<div class="date-box text-white mx-2 my-auto px-4 py-4 bg-info rounded text-center">
+									<p class="mb-0">No Docs</p>
+								</div>
+							</a>
+						{% endif %} #}
 
 
 					</div>
