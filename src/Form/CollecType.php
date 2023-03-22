@@ -18,12 +18,6 @@ class CollecType extends AbstractType
     {
         $builder
             
-            ->add('manual', VichFileType::class, [
-                'label' =>'Ajoutez un document de type Notice',
-                'required' => false,
-
-            ])
-
             ->add('docs', CollectionType::class, [
                 'entry_type' => ProductDocType::class, 
                 'label' => 'Photo(s) supplementaire(s)',

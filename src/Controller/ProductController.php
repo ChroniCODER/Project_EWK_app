@@ -7,6 +7,7 @@ use App\Entity\ProductDoc;
 use App\Form\CollecType;
 use App\Form\Product1Type;
 use App\Form\ProductDocType;
+use App\Form\ProductManualType;
 use App\Repository\ProductDocRepository;
 use App\Repository\ProductRepository;
 use DateInterval;
@@ -67,6 +68,31 @@ class ProductController extends AbstractController
         return $this->renderForm('product/new.html.twig', [
             'product' => $product,
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}/addManual', name: 'app_product_addManual', methods: ['GET', 'POST'])]
+    public function addManual(Request $request, Product $product, ProductDocRepository $productDocRepository): Response
+    {
+
+        $form = $this->createForm(ProductManualType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $productManual = $form->getData();
+            
+            
+            $productManual->setProduct($product);            
+            $productDocRepository->save($productManual, true);
+
+            return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('product/addManual.html.twig', [
+            'product' => $product,
+            'form' => $form,
+            
         ]);
     }
 

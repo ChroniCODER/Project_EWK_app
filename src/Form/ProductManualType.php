@@ -4,25 +4,23 @@ namespace App\Form;
 
 use App\Entity\ProductDoc;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichImageType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
-class ProductDocType extends AbstractType
+class ProductManualType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+        ->add('manualFile', VichFileType::class, [
+            'label' =>'Ajoutez un document de type Notice',
+            'required' => false,
             
+        ])
 
-            ->add('imageFile', VichImageType::class, [
-                    'label' => 'Importez une image',
-                
-                ])
-            
-        ;
+        ->add('submit', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -71,14 +71,25 @@
 									{% endif %}
 								</td>
 							</tr>
+							<tr>
+								<th>Manual</th>
+								<td>
+
+									{% if product.productDocs|filter(doc => attribute(doc, 'manual'))|length > 0 %}
+										<a href="{{ vich_uploader_asset(product.productDocs.first, 'manualFile') }}" target="_blank">ICI</a>
+									{% else %}
+										<p>
+											no manual uploaded !
+										</p>
+										<a href="{{ path('app_product_addManual', {'id': product.id}) }}">ajoutez</a>
+									{% endif %}
+
+								</td>
+							</tr>
 						</tbody>
-					</table>
-				</div>
-
-		{% include '_parts/addDocShow.html.twig' %}	
-
-		</div>
-
-
-	</div>
-</div>{% endblock %}
+					</td>
+				</tr>
+			</tbody>
+		</td>
+	</tr>
+</tbody></table></div>{% include '_parts/addDocShow.html.twig' %}</div></div></div>{% endblock %}
