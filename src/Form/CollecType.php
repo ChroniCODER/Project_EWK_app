@@ -20,15 +20,17 @@ class CollecType extends AbstractType
             
             ->add('manual', VichFileType::class, [
                 'label' =>'Ajoutez un document de type Notice',
+                'required' => false,
 
             ])
 
             ->add('docs', CollectionType::class, [
                 'entry_type' => ProductDocType::class, 
-                'label' => 'Photo supplementaire',
+                'label' => 'Photo(s) supplementaire(s)',
                 'allow_delete' => true,
                 'allow_add' => true,
                 'by_reference' => false,
+                
             ])
             ->add('submit', SubmitType::class)
         ;

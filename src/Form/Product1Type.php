@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Product;
+use App\Repository\CategoryRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
@@ -19,12 +20,23 @@ use Vich\UploaderBundle\Form\Type\VichImageType;
 
 class Product1Type extends AbstractType
 {
+    private $categoryRepository;
+
+    public function __construct(CategoryRepository $categoryRepository)
+    {
+        $this->categoryRepository = $categoryRepository;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom',
-                'attr' => ['placeholder' => 'Donnez un nom à votre produit']
+                'label' => 'Nom de votre Produit',
+                'attr' => [
+                    'placeholder' => 'Maximum 42 caractères',
+                    'maxlength' => 42
+                ],
+                
             ])
 
             ->add('category', EntityType::class, [
@@ -33,6 +45,7 @@ class Product1Type extends AbstractType
                 'constraints' => [
                     new NotBlank(),
                 ],
+                'data' => $this->categoryRepository->findOneBy(['name' => 'Others']),
             ])
             
             ->add('imageFile', VichImageType::class, [

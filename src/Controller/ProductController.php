@@ -11,6 +11,7 @@ use App\Repository\ProductDocRepository;
 use App\Repository\ProductRepository;
 use DateInterval;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -86,7 +87,7 @@ class ProductController extends AbstractController
         }
 
         return $this->renderForm('product/addDoc.html.twig', [
-            
+            'product' => $product,
             'form' => $form,
         ]);
     }
@@ -135,6 +136,29 @@ class ProductController extends AbstractController
 
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/delete-doc{id}', name: 'app_product_delete', methods: ['POST', 'DELETE'])]
+    public function deleteDoc(int $id, ProductDocRepository $productDocRepository)
+    {
+    // Recherche du productDoc par ID
+    $productDoc = $productDocRepository->find($id);
+
+    // Suppression du productDoc
+    $productDocRepository->remove($productDoc, true);
+
+    // Vérification que le produit existe
+    if (!$productDoc) {
+        return new JsonResponse(['message' => 'Doc non trouvé'], 404);
+    }
+
+    // Suppression du produit
+    // $product->delete();
+
+    // Retour d'une réponse de succès
+    return new JsonResponse(['message' => 'Doc supprimé avec succès']);
+    }
+
+
 
     /* #[Route('/name', name: 'app_product_index_name', methods: ['GET'])]
     public function indexByName(ProductRepository $productRepository): Response

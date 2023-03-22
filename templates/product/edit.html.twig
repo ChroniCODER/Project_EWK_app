@@ -1,13 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Product{% endblock %}
+{% block title %}Edit
+	{{ product.name }}
+{% endblock %}
 
 {% block body %}
-    <h1>Edit {{ product.name }}</h1>
+	<div class="container">
 
-    {{ include('product/_form.html.twig', {'button_label': 'Update'}) }}
+		<h1>Modify informations for:
+			{{ product.name }}</h1>
 
-    <a href="{{ path('app_product_index') }}">back to list</a>
+		{{ include('product/_formEdit.html.twig', {'button_label': 'Update'}) }}
 
-    {{ include('product/_delete_form.html.twig') }}
+		{# boutons de nav #}
+		<div class="row">
+			<div class="col-md-8 card rounded mt-3">
+				<div class="card-body d-flex justify-content-around">
+					<div>
+						<a href="{{ path('app_product_index') }}" class="btnFilter bg-info">Home</a>
+					</div>
+					<div>
+						{{ include('product/_delete_form.html.twig') }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}
+
+
+
+{# {% extends 'base.html.twig' %}
+
+{% block title %}Edit
+	{{ product.name }}
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+
+		<h1>Modify informations for:
+			{{ product.name }}</h1>
+
+		{{ include('product/_form.html.twig', {'button_label': 'Update'}) }}
+
+		
+		<div class="row">
+			<div class="col-md-8 card rounded mt-3">
+				<div class="card-body d-flex justify-content-around">
+					<div>
+						<a href="{{ path('app_product_index') }}" class="btnFilter bg-info">Home</a>
+					</div>
+					<div>
+						{{ include('product/_delete_form.html.twig') }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %} #}
+

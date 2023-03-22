@@ -19,6 +19,7 @@ class ProductDocType extends AbstractType
             //->add('manual')
 
             ->add('imageFile', VichImageType::class, [
+                    'label' => 'Importez une image',
                 
                 ])
             

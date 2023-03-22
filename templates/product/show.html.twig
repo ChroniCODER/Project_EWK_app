@@ -4,69 +4,81 @@
 {% endblock %}
 
 {% block body %}
-	<h1>{{ product.name }}</h1>
+	<div class="container">
+		<div class="row d-flex justify-content-around">
+			<div class="col-md-8 card rounded mt-3">
+				<div class="card-body d-flex justify-content-around">
+					<div>
+						<a href="{{ path('app_product_index') }}" class="btnFilter bg-info">Home</a>
+					</div>
+					<div>
+						<a href="{{ path('app_product_edit', {'id': product.id}) }}" class="btnFilter bg-success">Modify</a>
+					</div>
+					<div>
+						<div>
+							{{ include('product/_delete_form.html.twig') }}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
-	<table class="table">
-		<tbody>
-			
-			
-			<tr>
-				<th>Category</th>
-				<td>{{ product.category }}</td>
-			</tr>
-			<tr>
-				<th>Image</th>
-				<td>
-					{% if product.image %}
-						<img src="{{ vich_uploader_asset(product, 'imageFile')|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
-					{% else %}
-						<img src="{{ asset('/images/no-image-placeholder.png')|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
-					{% endif %}
-				</td>
-			</tr>
-			<tr>
-				<th>Purchase_Date</th>
-				<td>{{ product.purchaseDate ? product.purchaseDate|date('d-m-Y') : '' }}</td>
-			</tr>
-			<tr>
-				<th>WarrantyDuration</th>
-				<td>{{ product.warrantyDuration }}
-					{{ product.warrantyDuration == 1 ? 'An' : 'Ans' }}</td>
-			</tr>
-			<tr>
-				<th>Expiration_date</th>
-				<td>{{ product.expirationDate ? product.expirationDate|date('d-m-Y') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Ticket de Caisse</th>
-				<td>
-					{% if product.receipt %}
+		<div class="row d-flex justify-content-around">
+			<div class="col-md-8">
+				<div class="card product-name mt-3 border p-3 mb-3">
+					<h1>{{ product.name }}</h1>
+					<table class="table">
+						<tbody>
+							<tr>
+								<th>Category</th>
+								<td>{{ product.category }}</td>
+							</tr>
+							<tr>
+								<th>Image</th>
+								<td>
+									{% if product.image %}
+										<img src="{{ vich_uploader_asset(product, 'imageFile')|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
+									{% else %}
+										<img src="{{ asset('/images/no-image-placeholder.png')|imagine_filter('list_thumbnail') }}" alt="image de {{ product.name }}" class="img-fluid">
+									{% endif %}
+								</td>
+							</tr>
+							<tr>
+								<th>Purchase Date</th>
+								<td>{{ product.purchaseDate ? product.purchaseDate|date('d-m-Y') : '' }}</td>
+							</tr>
+							<tr>
+								<th>Warranty Duration</th>
+								<td>{{ product.warrantyDuration }}
+									{{ product.warrantyDuration == 1 ? 'An' : 'Ans' }}</td>
+							</tr>
+							<tr>
+								<th>Expiration Date</th>
+								<td>{{ product.expirationDate ? product.expirationDate|date('d-m-Y') : '' }}</td>
+							</tr>
+							<tr>
+								<th>Ticket de Caisse</th>
+								<td>
+									{% if product.receipt %}
+										<div class="my-auto">
+											<a href="{{ vich_uploader_asset(product, 'receiptFile') }}" class="btn btn-primary rounded">
+												<h4>Ticket de caisse</h4>
+												<img class="icons" src="{{ asset('/images/icons/001-receipt.png') }}" alt="receipt icon ">
+											</a>
+										</div>
+									{% else %}
+										<p>pas de ticket, c'est impossible !!</p>
+									{% endif %}
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
-						<a href="{{ vich_uploader_asset(product, 'receiptFile') }}" class="btn btn-primary">Voir le ticket de caisse</a>
-					{% else %}
-						<p>pas de ticket, c'est impossible !!</p>
-					{% endif %}
-				</td>
-			</tr>
+		{% include '_parts/addDocShow.html.twig' %}	
+
+		</div>
 
 
-		</tbody>
-	</table>
-
-    <h3>Documents Complementaire</h3>
-	{% if product.productDocs is not null %}
-		{% for doc in product.productDocs %}
-			{% if doc.image %}
-				<img src="{{ vich_uploader_asset(doc, 'imageFile')|imagine_filter('list_thumbnail') }}" alt="">
-			{% endif %}
-		{% endfor %}
-	{% else %}
-		Pas de documents Supplementaire
-	{% endif %}
-	<br>
-	<a href="{{ path('app_product_index') }}">back to list</a>
-
-	<a href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
-
-	{{ include('product/_delete_form.html.twig') }}
-{% endblock %}
+	</div>
+</div>{% endblock %}

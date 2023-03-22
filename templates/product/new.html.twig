@@ -7,5 +7,14 @@
 
     {{ include('product/_form.html.twig') }}
 
-    <a href="{{ path('app_product_index') }}">back to list</a>
+    {# boutons de nav #}
+		<div class="row">
+			<div class="col-md-8 card rounded mt-3">
+				<div class="card-body d-flex justify-content-around">
+					<div>
+						<a href="{{ path('app_product_index') }}" class="btnFilter bg-info">Home</a>
+					</div>
+				</div>
+			</div>
+		</div>
 {% endblock %}

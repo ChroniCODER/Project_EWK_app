@@ -1,14 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Ajoutez des Documents Supplémentaires à un produit
+	Ajoutez des Documents Supplémentaires à {{ product.name }}
 {% endblock %}
 
+
+
 {% block body %}
-	<div class="row justify-content-center">
-		<div class="col-md-8">
-			{{ form(form) }}
-			
+
+<div class="container">
+		<div class="row d-flex justify-content-around">
+			<div class="col-md-8 card rounded mt-3">
+				<div class="card-body d-flex justify-content-around">
+					<div>
+						<a href="{{ path('app_product_index') }}" class="btnFilter bg-info">Home</a>
+					</div>
+			</div>	
+	
+			<div class="col-md-8">
+				{{ form(form) }}
+			</div>
 		</div>
-	</div>
+</div>	
 {% endblock %}

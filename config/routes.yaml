@@ -13,3 +13,8 @@ app_product_index_orderby_date:
     path: /products/order-by-date
     controller: App\Controller\ProductController::index
     methods: ['GET']
+
+app_product_deleteDoc:
+    path: /product/delete-doc/{id}
+    controller: App\Controller\ProductController::deleteDoc
+    methods: ['POST', 'DELETE']
