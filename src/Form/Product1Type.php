@@ -75,9 +75,7 @@ class Product1Type extends AbstractType
                     'min' => 0,
                 ],
             ])
-            ->add('Ajoutez', SubmitType::class);
-            
-        ;
+            ->add('submit', SubmitType::class,);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

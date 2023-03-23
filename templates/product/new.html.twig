@@ -1,20 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Product{% endblock %}
+{% block title %}New Product
+{% endblock %}
 
 {% block body %}
-    <h1 class="mb-4 text-center">Ajoutez un nouveau produit</h1>
-
-    {{ include('product/_form.html.twig') }}
-
-    {# boutons de nav #}
-		<div class="row">
+	<div class="container">
+		<h1 class="mb-4 text-center">Ajoutez un nouveau produit</h1>
+		<div class="row d-flex justify-content-around">
 			<div class="col-md-8 card rounded mt-3">
 				<div class="card-body d-flex justify-content-around">
 					<div>
 						<a href="{{ path('app_product_index') }}" class="btnFilter bg-info">Home</a>
 					</div>
 				</div>
+
+				<div class="col-md-8">
+					{{ include('product/_form.html.twig') }}
+				</div>
 			</div>
 		</div>
-{% endblock %}
+		
+	{% endblock %}

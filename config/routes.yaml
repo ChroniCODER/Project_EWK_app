@@ -18,3 +18,8 @@ app_product_deleteDoc:
     path: /product/delete-doc/{id}
     controller: App\Controller\ProductController::deleteDoc
     methods: ['POST', 'DELETE']
+
+app_product_deleteManual:
+    path: /product/delete-manual/{id}
+    controller: App\Controller\ProductController::deleteManual
+

@@ -6,14 +6,8 @@
 
 {% block body %}
 	<div class="container">
-
-		<h1>Modify informations for:
-			{{ product.name }}</h1>
-
-		{{ include('product/_formEdit.html.twig', {'button_label': 'Update'}) }}
-
-		{# boutons de nav #}
-		<div class="row">
+		<h1 class="mb-4 text-center">Modify informations for: {{ product.name }}</h1>
+		<div class="row d-flex justify-content-around">
 			<div class="col-md-8 card rounded mt-3">
 				<div class="card-body d-flex justify-content-around">
 					<div>
@@ -25,9 +19,14 @@
 				</div>
 			</div>
 		</div>
+
+		<div class="col-md-8">
+			{{ include('product/_form.html.twig', {'button_label': 'Update'}) }}
+		</div>
+
+
 	</div>
 {% endblock %}
-
 
 
 {# {% extends 'base.html.twig' %}
@@ -59,4 +58,3 @@
 		</div>
 	</div>
 {% endblock %} #}
-

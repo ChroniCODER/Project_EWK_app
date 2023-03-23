@@ -28,18 +28,18 @@
 					</div>
 				{% endif %}
 			{% endfor %}
-	</div>
-{% else %}
-	<p>Pas de documents complémentaires.</p>
-	<a class="text-white text-decoration-none" href="{{ path('app_product_addDoc', {'id': product.id}) }}">
-		<div class="date-box text-white mx-2 my-auto px-4 py-4 bg-info rounded text-center">
-			<p class="mb-0">Add Docs</p>
 		</div>
-	</a>
-{% endif %}
+	{% else %}
+		<p>Pas de documents complémentaires.</p>
+		<a class="text-white text-decoration-none" href="{{ path('app_product_addDoc', {'id': product.id}) }}">
+			<div class="date-box text-white mx-2 my-auto px-4 py-4 bg-info rounded text-center">
+				<p class="mb-0">Add Docs</p>
+			</div>
+		</a>
+	{% endif %}
 
-<script>
-	function deleteDoc(button) {
+	<script>
+		function deleteDoc(button) {
 if (confirm('Are you sure you want to delete this document?')) {
 let url = button.getAttribute('data-url');
 let xhr = new XMLHttpRequest();
@@ -56,4 +56,5 @@ xhr.open('DELETE', url, true);
 xhr.send();
 }
 }
-</script></div>
+	</script>
+</div>

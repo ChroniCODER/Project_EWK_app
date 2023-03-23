@@ -74,22 +74,19 @@
 							<tr>
 								<th>Manual</th>
 								<td>
-
 									{% if product.productDocs|filter(doc => attribute(doc, 'manual'))|length > 0 %}
 										<a href="{{ vich_uploader_asset(product.productDocs.first, 'manualFile') }}" target="_blank">ICI</a>
+										<a href="{{ path('app_product_deleteManual', {'id': product.productDocs.first.id}) }}" class="btn btn-danger btn-sm">Delete</a>
 									{% else %}
-										<p>
-											no manual uploaded !
-										</p>
+										<p>no manual uploaded !</p>
 										<a href="{{ path('app_product_addManual', {'id': product.id}) }}">ajoutez</a>
 									{% endif %}
-
 								</td>
 							</tr>
 						</tbody>
-					</td>
-				</tr>
-			</tbody>
-		</td>
-	</tr>
-</tbody></table></div>{% include '_parts/addDocShow.html.twig' %}</div></div></div>{% endblock %}
+					</table>
+
+				</div>
+				{% include '_parts/addDocShow.html.twig' %}</div>
+
+		{% endblock %}
