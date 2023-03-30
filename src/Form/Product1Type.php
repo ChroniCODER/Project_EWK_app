@@ -49,6 +49,7 @@ class Product1Type extends AbstractType
             ])
             
             ->add('imageFile', VichImageType::class, [
+                'imagine_pattern' => 'list_thumbnail',
                 'required' => false,
                 'delete_label' => 'Supprimez la photo',
                 'allow_delete' => true,
@@ -57,6 +58,7 @@ class Product1Type extends AbstractType
             ])
 
             ->add('receiptFile', VichImageType::class, [
+                'imagine_pattern' => 'list_thumbnail',
                 'required' => false,
                 'allow_delete' => true,
                 'delete_label' => 'Supprimez le ticket',
